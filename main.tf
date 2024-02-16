@@ -14,7 +14,7 @@ provider "aws" {
 
 #ECS module
 module "ecs" {
-  source = "./modules/ecs"
+  source = "./modules/application"
 
   region                         = var.aws_region
   vpc_id                         = module.network.vpc_id
@@ -40,7 +40,7 @@ module "ecs" {
 
 #Networking Module
 module "network" {
-  source = "./modules/networking"
+  source = "./modules/network"
 
   vpc_cidr             = module.network.vpc_id
   public_subnet_cidrs  = var.public_subnet_cidr
@@ -50,7 +50,7 @@ module "network" {
 
 #RDS module
 module "rds" {
-  source = "./modules/rds"
+  source = "./modules/dbase"
 
   allocated_storage                  = var.rds_allocated_storage
   storage_type                       = var.rds_storage_type
