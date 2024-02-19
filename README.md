@@ -1,10 +1,10 @@
-.NET WebAPI Infrastructure Deployment
+# .NET WebAPI Infrastructure Deployment
 
-Overview
+## Overview
 
 This repository contains infrastructure templates and configurations for deploying a .NET WebAPI and an RDS (Relational Database Service) instance on AWS. The main objective is to provide a scalable, secure, and efficient infrastructure solution that enables seamless deployment and management of .NET WebAPI projects.
 
-Features
+## Features
 
 Infrastructure templates for deploying a .NET WebAPI and an RDS instance on AWS.
 CI/CD pipeline setup for continuous integration and deployment of the .NET WebAPI.
@@ -21,11 +21,11 @@ Infrastructure as code best practices adherence for modularity, reusability, and
 
 Cost optimization while maintaining performance and scalability of resources.
 
-Installation
+## Installation
 
 To deploy the infrastructure and set up the .NET WebAPI on AWS, follow these steps:
 
-Prerequisites
+## Prerequisites
 
 AWS Account: You need an AWS account with appropriate permissions to create resources like EC2 instances, RDS instances, IAM roles, etc.
 
@@ -35,7 +35,7 @@ AWS CLI: Install and configure the AWS Command Line Interface (CLI) on your loca
 
 Git: Install Git for version control and cloning this repository.
 
-Setup Instructions
+## Setup Instructions
 
 Clone the Repository:
 
@@ -70,25 +70,26 @@ Copy code
 dotnet publish -c Release -o out
 Upload the published files to an EC2 instance or use AWS Lambda for serverless deployment.
 
-Set Up CI/CD Pipeline:
+## Set Up CI/CD Pipeline:
 
-Configure AWS CodePipeline and AWS CodeBuild following the instructions provided in the CI/CD pipeline documentation.
+Configure following the instructions provided in the CI/CD pipeline documentation.
 Connect the pipeline to your repository and set up triggers for automatic deployment upon code changes.
-Configure Security and Monitoring:
+
+## Configure Security and Monitoring:
 
 Implement security best practices using AWS IAM, AWS KMS, and other relevant services.
 Set up monitoring and logging using AWS CloudWatch and AWS CloudTrail for enhanced visibility and traceability.
 Optimize Costs:
 
-Use AWS Cost Explorer and AWS Trusted Advisor to optimize resource costs while maintaining performance and scalability.
+## Use AWS Cost Explorer and AWS Trusted Advisor to optimize resource costs while maintaining performance and scalability.
 Usage
 Once the infrastructure and CI/CD pipeline are set up, you can:
 
-Deploy your .NET WebAPI projects on AWS by pushing changes to the repository.
+## Deploy your .NET WebAPI projects on AWS by pushing changes to the repository.
 Monitor the performance and logs of your deployed resources through AWS Management Console or CLI.
 Scale your WebAPI dynamically based on predefined metrics and triggers.
 Contributing
 Contributions to this project are welcome! If you have suggestions for improvements, open a pull request with your proposed changes. Please ensure that your contributions adhere to the project's coding standards and guidelines.
 
-Support
+## Support
 For any questions or issues regarding this project, please open an issue on GitHub. We appreciate your feedback and participation!
