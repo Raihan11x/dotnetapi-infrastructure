@@ -13,7 +13,7 @@ resource "aws_db_instance" "default" {
   password                            = var.db_password
   parameter_group_name                = aws_db_parameter_group.default.name
   db_subnet_group_name                = aws_db_subnet_group.default.name
-  vpc_security_group_ids              = [var.security_group_id]
+  vpc_security_group_ids              = [aws_security_group.rds_sg.id]
   storage_encrypted                   = true
   kms_key_id                          = aws_kms_key.rds_encryption.arn
   publicly_accessible                 = false
@@ -23,6 +23,26 @@ resource "aws_db_instance" "default" {
   enabled_cloudwatch_logs_exports     = ["audit", "error", "general", "slowquery"]
 }
 
+# RDS Security Group
+resource "aws_security_group" "rds_sg" {
+  name        = "rds_sg"
+  description = "Allow inbound traffic"
+  vpc_id      = var.vpc_rds_id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port       = 3306
+    to_port         = 3306
+    protocol        = "tcp"
+    security_groups = var.rds_security_group
+  }
+}
 
 resource "aws_db_parameter_group" "default" {
   name   = "${var.db_name}-parameters"

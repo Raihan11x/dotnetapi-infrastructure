@@ -53,10 +53,10 @@ variable "subnet_ids" {
 }
 
 #security group
-variable "security_group_ids" {
-  description = "The security group IDs for the ECS cluster"
-  type        = list(string)
-}
+# variable "security_group_ids" {
+#   description = "The security group IDs for the ECS cluster"
+#   type        = list(string)
+# }
 
 #service name
 variable "ecs_service_name" {
@@ -77,10 +77,10 @@ variable "vpc_id" {
 }
 
 #alb security group ID
-variable "alb_security_group_id" {
-  description = "The security group ID for the ALB"
-  type        = string
-}
+# variable "alb_security_group_id" {
+#   description = "The security group ID for the ALB"
+#   type        = string
+# }
 
 #alb subnets
 variable "alb_subnets" {
@@ -116,5 +116,11 @@ variable "ecs_scale_up_threshold" {
 variable "ecs_scale_down_threshold" {
   description = "The scale down threshold for the ECS service"
   type        = number
+}
+
+#variable ingress cidr
+variable "ingress_cidr_alb" {
+  description = "The ingress CIDR for the security group"
+  type        = list(string)
 }
 

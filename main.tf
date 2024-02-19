@@ -1,4 +1,3 @@
-
 terraform {
   required_providers {
     aws = {
@@ -27,22 +26,21 @@ module "ecs" {
   ecs_container_port             = var.ecs_container_port
   ecs_service_name               = var.ecs_service_name
   subnet_ids                     = module.network.public_subnet_ids
-  security_group_ids             = aws_security_group.ecs_sg.id
   ecs_service_desired_count      = var.ecs_service_desired_count
-  alb_security_group_id          = aws_security_group.alb_sg.id
   alb_subnets                    = module.network.public_subnet_ids
   ecs_max_capacity               = var.ecs_max_capacity
   ecs_min_capacity               = var.ecs_min_capacity
   cpu_utilization_high_threshold = var.ecs_cpu_threshold
   ecs_scale_up_threshold         = var.ecs_cpu_scale_up
   ecs_scale_down_threshold       = var.ecs_cpu_scale_down
+  ingress_cidr_alb               = [var.ingress_cidr_alb][0]
 }
 
 #Networking Module
 module "network" {
   source = "./modules/network"
 
-  vpc_cidr             = module.network.vpc_id
+  vpc_cidr             = var.vpc_cidr
   public_subnet_cidrs  = var.public_subnet_cidr
   private_subnet_cidrs = var.private_subnet_cidr
   availability_zones   = var.availability_zones
@@ -62,56 +60,8 @@ module "rds" {
   db_password                        = var.rds_password
   db_parameter_family                = var.rds_parameter_group_family
   subnet_ids                         = module.network.private_subnet_ids
-  security_group_id                  = aws_security_group.rds_sg.id
-  rds_instance_identifier            = var.rds_instance_identifier
+  rds_security_group                 = [module.ecs.alb_security_group_id]
+  vpc_rds_id                         = module.network.vpc_id
+  rds_instance_identifier             = var.rds_instance_identifier
   rds_cpu_utilization_high_threshold = var.rds_cpu_threshold
-}
-
-#Security group for RDS
-resource "aws_security_group" "rds_security_group" {
-  name        = "rds_security_group"
-  description = "Allow inbound traffic"
-  vpc_id      = module.networking.vpc_id
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["10.0.0.0/16"]
-  }
-}
-
-#Security group for ECS
-resource "aws_security_group" "ecs_security_group" {
-  name        = "ecs_security_group"
-  description = "Allow inbound traffic"
-  vpc_id      = module.networking.vpc_id
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = [aws_security_group.alb_security_group_id.id]
-  }
-}
-
-#Security group for ALB
-resource "aws_security_group" "alb_security_group" {
-  name        = "alb_security_group"
-  description = "Allow inbound traffic"
-  vpc_id      = module.networking.vpc_id
-
-  ingress = {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 }

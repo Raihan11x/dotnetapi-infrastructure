@@ -23,7 +23,7 @@ variable "public_subnet_cidr" {
 variable "private_subnet_cidr" {
   description = "The CIDR block for the private subnet"
   type        = list(string)
-  default     = ["10.0.3.0/23", "10.0.4.0/24"]
+  default     = ["10.0.3.0/24", "10.0.4.0/24"]
 }
 
 # Availability Zones
@@ -200,4 +200,11 @@ variable "rds_instance_identifier" {
 variable "rds_cpu_threshold" {
   description = "The CPU threshold for the RDS instance"
   type        = number
+}
+
+#ingress
+variable "ingress_cidr_alb" {
+  description = "The ingress for the security group"
+  type        = list(string)
+  default     = ["86.9.22.0/24"]
 }

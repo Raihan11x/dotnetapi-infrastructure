@@ -43,10 +43,10 @@ variable "db_parameter_family" {
   type        = string
 }
 
-variable "security_group_id" {
-  description = "The ID of the VPC security group for the RDS instance"
-  type        = string
-}
+# variable "security_group_id" {
+#   description = "The ID of the VPC security group for the RDS instance"
+#   type        = string
+# }
 
 variable "subnet_ids" {
   description = "A list of VPC subnet IDs for the RDS instance"
@@ -60,5 +60,15 @@ variable "rds_cpu_utilization_high_threshold" {
 
 variable "rds_instance_identifier" {
   description = "Identifier for the RDS instance"
+  type        = string
+}
+
+variable "rds_security_group" {
+  description = "RDS Security Group"
+  type        = list(string)
+}
+
+variable "vpc_rds_id" {
+  description = "VPC ID for RDS"
   type        = string
 }

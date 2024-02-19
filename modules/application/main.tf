@@ -1,5 +1,47 @@
 data "aws_caller_identity" "current" {}
 
+#Security Group
+resource "aws_security_group" "alb" {
+  name        = "alb_sg"
+  description = "Allow inbound traffic"
+  vpc_id      = var.vpc_id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = [var.ingress_cidr_alb][0]
+  }
+}
+
+#ECS security group
+resource "aws_security_group" "ecs_sg" {
+  name        = "ecs_sg"
+  description = "Allow inbound traffic"
+  vpc_id      = var.vpc_id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+  }
+}
+
 resource "aws_lb" "load_balancer" {
   name               = "my-ecs-load-balancer"
   internal           = false
@@ -51,7 +93,7 @@ resource "aws_ecs_task_definition" "task_definition" {
   cpu                      = var.ecs_task_cpu
   memory                   = var.ecs_task_memory
 
-  execution_role_arn = aws_iam_role.ecs_task_execution_role.arn
+  execution_role_arn = aws_iam_role.ecs_execution_role.arn
 
   container_definitions = jsonencode([
     {
@@ -123,7 +165,7 @@ resource "aws_cloudwatch_metric_alarm" "ecs" {
   period              = "60"
   statistic           = "Average"
   threshold           = var.cpu_utilization_high_threshold
-  alarm_actions       = ["arn:aws:application-autoscaling:${var.region}:${data.aws_caller_identity.current.account_id}:scalableTarget/${aws_appautoscaling_target.ecs_target.resource_id}/scalablePolicy/${aws_appautoscaling_policy.ecs_scale_down.name}"]
+  alarm_actions       = ["arn:aws:application-autoscaling:${var.region}:${data.aws_caller_identity.current.account_id}:scalableTarget/${aws_appautoscaling_target.target.resource_id}/scalablePolicy/${aws_appautoscaling_policy.down.name}"]
   dimensions = {
     ClusterName = aws_ecs_cluster.cluster.name
     ServiceName = aws_ecs_service.service.name
@@ -140,7 +182,7 @@ resource "aws_ecs_service" "service" {
 
   network_configuration {
     subnets         = var.alb_subnets
-    security_groups = [var.alb_security_group_id]
+    security_groups = [aws_security_group.ecs_sg.id]
   }
 
   load_balancer {

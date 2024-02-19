@@ -1,6 +1,9 @@
 name: Terraform Pipeline
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -91,7 +94,7 @@ jobs:
       - name: terraform plan artifact
         uses: actions/download-artifact@v2
         with:
-          name: terraform-plan 
+          name: terraform-plan
 
       - name: Terraform Apply
         run: terraform apply terraform-plan
