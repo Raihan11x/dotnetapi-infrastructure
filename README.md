@@ -43,7 +43,7 @@ bash
 
 Copy code
 
-git clone https://github.com/your-username/dotnet-webapi-infra.git
+git clone https://github.com/your-username/dotnetapi-infrastructure.git
 
 Navigate to the Project Directory:
 
@@ -89,9 +89,6 @@ Monitor the performance and logs of your deployed resources through AWS Manageme
 Scale your WebAPI dynamically based on predefined metrics and triggers.
 Contributing
 Contributions to this project are welcome! If you have suggestions for improvements, open a pull request with your proposed changes. Please ensure that your contributions adhere to the project's coding standards and guidelines.
-
-License
-This project is licensed under the MIT License.
 
 Support
 For any questions or issues regarding this project, please open an issue on GitHub. We appreciate your feedback and participation!
