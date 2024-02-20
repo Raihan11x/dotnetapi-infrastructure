@@ -1,95 +1,209 @@
-# .NET WebAPI Infrastructure Deployment
+<p align="center">
+  <img src="https://raw.githubusercontent.com/PKief/vscode-material-icon-theme/ec559a9f6bfd399b82bb44393651661b08aaf7ba/icons/folder-markdown-open.svg" width="100" />
+</p>
+<p align="center">
+    <h1 align="center">DOTNETAPI-INFRASTRUCTURE</h1>
+</p>
+<p align="center">
+    <em><code>► History</code></em>
+</p>
+<p align="center">
+	<img src="https://img.shields.io/github/license/Raihan11x/dotnetapi-infrastructure?style=flat&color=0080ff" alt="license">
+	<img src="https://img.shields.io/github/last-commit/Raihan11x/dotnetapi-infrastructure?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
+	<img src="https://img.shields.io/github/languages/top/Raihan11x/dotnetapi-infrastructure?style=flat&color=0080ff" alt="repo-top-language">
+	<img src="https://img.shields.io/github/languages/count/Raihan11x/dotnetapi-infrastructure?style=flat&color=0080ff" alt="repo-language-count">
+<p>
+<p align="center">
+		<em>Developed with the software and tools below.</em>
+</p>
+<p align="center">
+	<img src="https://img.shields.io/badge/Terraform-7B42BC.svg?style=flat&logo=Terraform&logoColor=white" alt="Terraform">
+	<img src="https://img.shields.io/badge/GitHub%20Actions-2088FF.svg?style=flat&logo=GitHub-Actions&logoColor=white" alt="GitHub%20Actions">
+</p>
+<hr>
 
-## Overview
+##  Quick Links
 
-This repository contains infrastructure templates and configurations for deploying a .NET WebAPI and an RDS (Relational Database Service) instance on AWS. The main objective is to provide a scalable, secure, and efficient infrastructure solution that enables seamless deployment and management of .NET WebAPI projects.
+> - [ Overview](#-overview)
+> - [ Features](#-features)
+> - [ Repository Structure](#-repository-structure)
+> - [ Modules](#-modules)
+> - [ Getting Started](#-getting-started)
+>   - [ Installation](#-installation)
+>   - [Running dotnetapi-infrastructure](#-running-dotnetapi-infrastructure)
+>   - [ Tests](#-tests)
+> - [ Project Roadmap](#-project-roadmap)
+> - [ Contributing](#-contributing)
+> - [ License](#-license)
+> - [ Acknowledgments](#-acknowledgments)
 
-## Features
+---
 
-Infrastructure templates for deploying a .NET WebAPI and an RDS instance on AWS.
-CI/CD pipeline setup for continuous integration and deployment of the .NET WebAPI.
+##  Overview
 
-Security best practices implementation for both the .NET WebAPI and RDS resources.
+<code>► This README provides instructions for deploying the infrastructure with Terraform on AWS. The infrastructure has modulars</code>
 
-High availability and redundancy configuration for the WebAPI and RDS.
+---
 
-Monitoring and logging setup for enhanced visibility and traceability.
+##  Repository Structure
 
-Auto-scaling strategy implementation for the WebAPI.
+```sh
+└── dotnetapi-infrastructure/
+    ├── .github
+    │   └── workflows
+    │       └── terraform-pipeline.yml
+    ├── README.md
+    ├── main.tf
+    ├── modules
+    │   ├── application
+    │   │   ├── main.tf
+    │   │   ├── outputs.tf
+    │   │   └── variables.tf
+    │   ├── dbase
+    │   │   ├── main.tf
+    │   │   ├── outputs.tf
+    │   │   └── variables.tf
+    │   └── network
+    │       ├── main.tf
+    │       ├── outputs.tf
+    │       └── variables.tf
+    └── variables.tf
+```
 
-Infrastructure as code best practices adherence for modularity, reusability, and version control.
+---
 
-Cost optimization while maintaining performance and scalability of resources.
+##  Modules
 
-## Installation
+<details closed><summary>.</summary>
 
-To deploy the infrastructure and set up the .NET WebAPI on AWS, follow these steps:
+| File                                                                                           | Summary                         |
+| ---                                                                                            | ---                             |
+| [main.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/main.tf)           | <code>► Variables</code> |
+| [variables.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/variables.tf) | <code>► Main Configuration</code> |
 
-## Prerequisites
+</details>
 
-AWS Account: You need an AWS account with appropriate permissions to create resources like EC2 instances, RDS instances, IAM roles, etc.
+<details closed><summary>.github.workflows</summary>
 
-AWS CLI: Install and configure the AWS Command Line Interface (CLI) on your local machine.
+| File                                                                                                                                 | Summary                         |
+| ---                                                                                                                                  | ---                             |
+| [terraform-pipeline.yml](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/.github/workflows/terraform-pipeline.yml) | <code>► Pipeline</code> |
 
-.NET Core SDK: Install the .NET Core SDK to build and run the .NET WebAPI locally.
+</details>
 
-Git: Install Git for version control and cloning this repository.
+<details closed><summary>modules.dbase</summary>
 
-## Setup Instructions
+| File                                                                                                         | Summary                         |
+| ---                                                                                                          | ---                             |
+| [outputs.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/modules/dbase/outputs.tf)     | <code>► Database Modules Outputs</code> |
+| [main.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/modules/dbase/main.tf)           | <code>► Database Modules Main</code> |
+| [variables.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/modules/dbase/variables.tf) | <code>► Database Modules Variables</code> |
 
-Clone the Repository:
+</details>
 
-bash
+<details closed><summary>modules.network</summary>
 
-Copy code
+| File                                                                                                           | Summary                         |
+| ---                                                                                                            | ---                             |
+| [outputs.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/modules/network/outputs.tf)     | <code>► Network Modules Outputs</code> |
+| [main.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/modules/network/main.tf)           | <code>► Network Modules Main</code> |
+| [variables.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/modules/network/variables.tf) | <code>► Network Modules Variables</code> |
 
-git clone https://github.com/your-username/dotnetapi-infrastructure.git
+</details>
 
-Navigate to the Project Directory:
+<details closed><summary>modules.application</summary>
 
-bash
-Copy code
-cd dotnet-webapi-infra
-Deploy Infrastructure:
+| File                                                                                                               | Summary                         |
+| ---                                                                                                                | ---                             |
+| [outputs.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/modules/application/outputs.tf)     | <code>► Application Module Outputs</code> |
+| [main.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/modules/application/main.tf)           | <code>► Application Module Main</code> |
+| [variables.tf](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/master/modules/application/variables.tf) | <code>► Application Module Variables</code> |
 
-Choose the preferred technology for infrastructure provisioning (AWS CloudFormation, AWS CDK, or Terraform).
-Follow the instructions in the respective README or documentation to deploy the infrastructure.
-Build and Deploy the .NET WebAPI:
+</details>
 
-Navigate to the .NET WebAPI directory.
+---
 
-Build the .NET WebAPI project:
+##  Getting Started
 
-bash
-Copy code
-dotnet build
-Deploy the .NET WebAPI to AWS:
+***Requirements***
 
-bash
-Copy code
-dotnet publish -c Release -o out
-Upload the published files to an EC2 instance or use AWS Lambda for serverless deployment.
+Ensure you have the following dependencies installed on your system:
 
-## Set Up CI/CD Pipeline:
+* **Terraform**: `version x.y.z`
 
-Configure following the instructions provided in the CI/CD pipeline documentation.
-Connect the pipeline to your repository and set up triggers for automatic deployment upon code changes.
+###  Installation
 
-## Configure Security and Monitoring:
+1. Clone the dotnetapi-infrastructure repository:
 
-Implement security best practices using AWS IAM, AWS KMS, and other relevant services.
-Set up monitoring and logging using AWS CloudWatch and AWS CloudTrail for enhanced visibility and traceability.
-Optimize Costs:
+```sh
+git clone https://github.com/Raihan11x/dotnetapi-infrastructure
+```
 
-## Use AWS Cost Explorer and AWS Trusted Advisor to optimize resource costs while maintaining performance and scalability.
-Usage
-Once the infrastructure and CI/CD pipeline are set up, you can:
+2. Change to the project directory:
 
-## Deploy your .NET WebAPI projects on AWS by pushing changes to the repository.
-Monitor the performance and logs of your deployed resources through AWS Management Console or CLI.
-Scale your WebAPI dynamically based on predefined metrics and triggers.
-Contributing
-Contributions to this project are welcome! If you have suggestions for improvements, open a pull request with your proposed changes. Please ensure that your contributions adhere to the project's coding standards and guidelines.
+```sh
+cd dotnetapi-infrastructure
+```
 
-## Support
-For any questions or issues regarding this project, please open an issue on GitHub. We appreciate your feedback and participation!
+3. Install the dependencies:
+
+```sh
+terraform init
+```
+
+###  Running `dotnetapi-infrastructure`
+
+Use the following command to run dotnetapi-infrastructure:
+
+```sh
+terraform apply
+```
+
+---
+
+##  Contributing
+
+Contributions are welcome! Here are several ways you can contribute:
+
+- **[Submit Pull Requests](https://github.com/Raihan11x/dotnetapi-infrastructure/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **[Join the Discussions](https://github.com/Raihan11x/dotnetapi-infrastructure/discussions)**: Share your insights, provide feedback, or ask questions.
+- **[Report Issues](https://github.com/Raihan11x/dotnetapi-infrastructure/issues)**: Submit bugs found or log feature requests for the `dotnetapi-infrastructure` project.
+
+<details closed>
+    <summary>Contributing Guidelines</summary>
+
+1. **Fork the Repository**: Start by forking the project repository to your github account.
+2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
+   ```sh
+   git clone https://github.com/Raihan11x/dotnetapi-infrastructure
+   ```
+3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
+   ```sh
+   git checkout -b new-feature-x
+   ```
+4. **Make Your Changes**: Develop and test your changes locally.
+5. **Commit Your Changes**: Commit with a clear message describing your updates.
+   ```sh
+   git commit -m 'Implemented new feature x.'
+   ```
+6. **Push to GitHub**: Push the changes to your forked repository.
+   ```sh
+   git push origin new-feature-x
+   ```
+7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
+
+Once your PR is reviewed and approved, it will be merged into the main branch.
+
+</details>
+
+---
+
+##  License
+
+This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
+
+---
+
+[**Return**](#-quick-links)
+
+---
