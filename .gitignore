@@ -3,7 +3,6 @@
 *.tfstate
 *.tfstate.backup
 *.tfplan
-terraform.tfvars
 .terraform.lock.hcl
 
 # Ignore .DS_Store files

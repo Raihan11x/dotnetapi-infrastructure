@@ -62,6 +62,6 @@ module "dbase" {
   subnet_ids                         = module.network.private_subnet_ids
   rds_security_group                 = [module.application.alb_security_group_id]
   vpc_rds_id                         = module.network.vpc_id
-  rds_instance_identifier             = var.rds_instance_identifier
+  rds_instance_identifier            = var.rds_instance_identifier
   rds_cpu_utilization_high_threshold = var.rds_cpu_threshold
 }
