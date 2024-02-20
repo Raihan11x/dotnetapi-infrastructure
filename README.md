@@ -28,7 +28,7 @@
 
 ##  Overview
 
-<code>► This README provides instructions for deploying the infrastructure with Terraform on AWS. The infrastructure has modulars</code>
+<code>► This README provides instructions for deploying the infrastructure with Terraform on AWS. The infrastructure has modules</code>
 
 ---
 
