@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 #ECS module
-module "ecs" {
+module "application" {
   source = "./modules/application"
 
   region                         = var.aws_region
@@ -47,7 +47,7 @@ module "network" {
 }
 
 #RDS module
-module "rds" {
+module "dbase" {
   source = "./modules/dbase"
 
   allocated_storage                  = var.rds_allocated_storage
@@ -60,7 +60,7 @@ module "rds" {
   db_password                        = var.rds_password
   db_parameter_family                = var.rds_parameter_group_family
   subnet_ids                         = module.network.private_subnet_ids
-  rds_security_group                 = [module.ecs.alb_security_group_id]
+  rds_security_group                 = [module.application.alb_security_group_id]
   vpc_rds_id                         = module.network.vpc_id
   rds_instance_identifier             = var.rds_instance_identifier
   rds_cpu_utilization_high_threshold = var.rds_cpu_threshold
