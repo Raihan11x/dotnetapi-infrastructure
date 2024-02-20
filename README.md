@@ -5,15 +5,6 @@
     <h1 align="center">DOTNETAPI-INFRASTRUCTURE</h1>
 </p>
 <p align="center">
-    <em><code>► History</code></em>
-</p>
-<p align="center">
-	<img src="https://img.shields.io/github/license/Raihan11x/dotnetapi-infrastructure?style=flat&color=0080ff" alt="license">
-	<img src="https://img.shields.io/github/last-commit/Raihan11x/dotnetapi-infrastructure?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
-	<img src="https://img.shields.io/github/languages/top/Raihan11x/dotnetapi-infrastructure?style=flat&color=0080ff" alt="repo-top-language">
-	<img src="https://img.shields.io/github/languages/count/Raihan11x/dotnetapi-infrastructure?style=flat&color=0080ff" alt="repo-language-count">
-<p>
-<p align="center">
 		<em>Developed with the software and tools below.</em>
 </p>
 <p align="center">
@@ -31,11 +22,8 @@
 > - [ Getting Started](#-getting-started)
 >   - [ Installation](#-installation)
 >   - [Running dotnetapi-infrastructure](#-running-dotnetapi-infrastructure)
->   - [ Tests](#-tests)
-> - [ Project Roadmap](#-project-roadmap)
 > - [ Contributing](#-contributing)
 > - [ License](#-license)
-> - [ Acknowledgments](#-acknowledgments)
 
 ---
 
@@ -74,7 +62,7 @@
 
 ##  Modules
 
-<details closed><summary>.</summary>
+<details closed><summary>root</summary>
 
 | File                                                                                           | Summary                         |
 | ---                                                                                            | ---                             |
