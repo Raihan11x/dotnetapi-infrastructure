@@ -140,13 +140,30 @@ terraform init
 
 ###  Running `dotnetapi-infrastructure`
 
-Use the following command to run dotnetapi-infrastructure:
+Use the following command to run dotnetapi-infrastructure locally:
 
 ```sh
-terraform apply
+terraform plan
 ```
 
+NOTE: This will show you what changes will occur without applying these changes
+
 ---
+
+## Pipeline
+
+Modify components fo the pipeline to your needs, an example would be the name down below, you can change this to whatever suits your project.
+
+```sh
+name: Terraform Pipeline
+```
+can also include more steps if so desired, here is how that would look:
+
+```sh
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+```
 
 ##  Contributing
 
